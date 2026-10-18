@@ -64,6 +64,12 @@ class Person:
 p = Person()
 p.age = 30
 # Now Person instances can only have name and age as instance attributes.
+# Why it matters
+# __slots__ can:
+
+# reduce memory usage
+# prevent accidental creation of arbitrary attributes
+# make the class layout more explicit
 
 # Example 1B: Creating a class dynamically
 def start(self):
@@ -84,6 +90,12 @@ print(type(my_dynamic_car))
 
 
 # Example 1C: Custom metaclass that uppercases public attribute names
+# In Python, __new__ is the constructor, and __init__ is the initializer. 
+# When you call a class like MyClass(), Python secretly calls __new__ first 
+# to build the empty object, and then hands that object over to __init__ to set up its initial values.
+#__new__  Runs first. __init__ Runs second (only if __new__ returns an instance of the same class
+# if the __new__ method returns an instance of the different class then __init__ is not called).
+
 class UppercaseMeta(type):
     def __new__(mcls, name, bases, namespace):
         new_namespace = {}
